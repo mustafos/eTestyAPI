@@ -2,22 +2,43 @@ import 'package:flutter/material.dart';
 
 // shift opt F update code
 void main() {
-  runApp(
-    MaterialApp(  // Flutter Gallery
+  runApp(MyFirstApp());
+}
+
+class MyFirstApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.amber,
         appBar: AppBar(
           title: Text("My First App"),
           centerTitle: true,
         ),
         body: Center(
-          child: Text(
-            "This is My Homepage",
-            style: TextStyle(
-                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
+          child: Container(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                LinearProgressIndicator(value: 23),
+                Text(
+                  "23%",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                Text(
+                  "Press button to download",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ],
+            ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: null,
+          child: Icon(Icons.cloud_download),
+        ),
       ),
-    ),
-  );
+    );
+    throw UnimplementedError();
+  }
 }
