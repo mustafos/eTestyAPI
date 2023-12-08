@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-// shift opt F update code
 void main() {
   runApp(MyFirstApp());
 }
@@ -72,7 +71,7 @@ class _MyFirstAppState extends State<MyFirstApp> {
       setState(() {
         _progressValue += 0.2;
 
-        if (_progressValue.toStringAsFixed(1) == '1.0') {
+        if (_progressValue >= 1.0) {
           _loading = false;
           t.cancel();
           _progressValue = 0.0;
