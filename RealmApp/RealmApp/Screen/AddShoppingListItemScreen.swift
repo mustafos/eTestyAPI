@@ -6,13 +6,18 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct AddShoppingListItemScreen: View {
+    
+    @ObservedRealmObject var shoppingList: ShoppingList
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    AddShoppingListItemScreen()
+    AddShoppingListItemScreen(shoppingList: ShoppingList())
 }

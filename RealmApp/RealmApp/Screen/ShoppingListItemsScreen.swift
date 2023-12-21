@@ -6,13 +6,37 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ShoppingListItemsScreen: View {
+    
+    @ObservedRealmObject var shoppingList: ShoppingList
+    
+    @State private var isPresented: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Items")
+                .navigationTitle("Alze.cz")
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    // action
+                    isPresented = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+        .sheet(isPresented: $isPresented) {
+            AddShoppingListItemScreen(shoppingList: shoppingList)
+        }
     }
 }
 
 #Preview {
-    ShoppingListItemsScreen()
+    NavigationView {
+        ShoppingListItemsScreen(shoppingList: ShoppingList())
+    }
 }
