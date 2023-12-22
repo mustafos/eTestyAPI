@@ -16,8 +16,12 @@ struct ShoppingListItemsScreen: View {
     
     var body: some View {
         VStack {
-            Text("Items")
-                .navigationTitle("Alze.cz")
+            List {
+                ForEach(shoppingList.items) { item in
+                    Text(item.title)
+                }
+            }
+            .navigationTitle(shoppingList.title)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

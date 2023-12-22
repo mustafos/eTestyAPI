@@ -15,11 +15,16 @@ class Migrator {
     }
     
     func updateSchema() {
-        let config = Realm.Configuration(schemaVersion: 1) { migration, oldSchemaVersion in
+        let config = Realm.Configuration(schemaVersion: 2) { migration, oldSchemaVersion in
             if oldSchemaVersion < 1 {
                 // add new fields
                 migration.enumerateObjects(ofType: ShoppingList.className()) { _, newObject in
                     newObject!["items"] = List<ShoppingItem>()
+                }
+            }
+            if oldSchemaVersion < 2 {
+                migration.enumerateObjects(ofType: ShoppingItem.className()) { _, newObject in
+                    newObject!["category"] = ""
                 }
             }
         }
