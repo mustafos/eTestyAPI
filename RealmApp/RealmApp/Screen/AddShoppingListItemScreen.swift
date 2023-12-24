@@ -33,9 +33,18 @@ struct AddShoppingListItemScreen: View {
         }
     }
     
+    private var isEditing: Bool {
+        itemToEdit == nil ? false : true
+    }
+    
     var body: some View {
-        NavigationView {
-            VStack {
+        VStack(alignment: .leading) {
+            
+                if !isEditing {
+                    Text("Add Item")
+                        .font(.largeTitle)
+                }
+            
                 LazyVGrid(columns: columns) {
                     ForEach(data, id: \.self) { item in
                         Text(item)
@@ -68,16 +77,15 @@ struct AddShoppingListItemScreen: View {
                     dismiss()
                     
                 } label: {
-                    Text("Save")
+                    Text(isEditing ? "Update" : "Save")
                         .frame(maxWidth: .infinity, maxHeight: 40)
                 }
                 .buttonStyle(.bordered)
                 .padding(.top, 20)
                 Spacer()
-                    .navigationTitle("Add Item")
+                    .navigationTitle(isEditing ? "Update Item" : "Add Item")
             }
             .padding()
-        }
     }
     
     private func save() {
